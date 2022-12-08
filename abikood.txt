@@ -1,0 +1,71 @@
+func findReplaceCommand(txt []string) []string {
+	for i, foundCommand := range txt {
+		if i >= 1 {
+			switch foundCommand {
+			case "(hex)":
+				txt[i-1] = hexToDec(txt[i-1])
+				if i < len(txt)-1 {
+					txt = RemoveIndex(txt, i)
+					i--
+				} else {
+					txt = txt[:len(txt)-1]
+				}
+			case "(bin)":
+				txt[i-1] = binToDec(txt[i-1])
+				if i < len(txt)-1 {
+					txt = RemoveIndex(txt, i)
+					i--
+				} else {
+					txt = txt[:len(txt)-1]
+				}
+			case "(up)":
+				txt[i-1] = strings.ToUpper(txt[i-1])
+				if i < len(txt)-1 {
+					txt = RemoveIndex(txt, i)
+					i--
+				} else {
+					txt = txt[:len(txt)-1]
+				}
+			case "(low)":
+				txt[i-1] = strings.ToLower(txt[i-1])
+				if i < len(txt)-1 {
+					txt = RemoveIndex(txt, i)
+					i--
+				} else {
+					txt = txt[:len(txt)-1]
+				}
+			case "(cap)":
+				txt[i-1] = strings.Title(txt[i-1])
+				if i < len(txt)-1 {
+					txt = RemoveIndex(txt, i)
+					i--
+				} else {
+					txt = txt[:len(txt)-1]
+				}
+			}
+
+		}
+	}
+	return txt
+}
+
+
+
+
+/*func RemoveIndex(s []string, index int) []string {
+	if index < len(s)-1 {
+		ret := make([]string, 0)
+		ret = append(ret, s[:index]...)
+		return append(ret, s[index+1:]...)
+	}
+
+}*/
+
+
+//missing_space_regex = regex.MustCompile(`.*?\p{P}\S`)
+//print(missing_space_regex.match(mystring))
+
+//extra_space_regex = regex.compile(r'.*?\s\p{P}')
+//print(extra_space_regex.match(mystring))
+
+//command_with_nr := re.MustCompile(`\(\w+,\s?\d+\)`)
